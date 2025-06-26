@@ -3,7 +3,7 @@
 <html lang="vi"><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HamNoSys to SigML Converter</title>
+    <title>VSL</title>
     
     <!-- Avatar CSS and JS -->
     <link rel="stylesheet" href="cwasa.css" />
@@ -98,17 +98,19 @@
             overflow-y: auto;
             border: 2px solid #e9ecef;
             border-radius: 8px;
-            max-height: 400px;
+            max-height: 500px;
+            min-height: 350px;
         }
 
         .word-item {
-            padding: 12px 16px;
+            padding: 18px 25px;
             border-bottom: 1px solid #f1f3f4;
             cursor: pointer;
             transition: background-color 0.2s;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            font-size: 18px;
         }
 
         .word-item:hover {
@@ -122,6 +124,7 @@
 
         .word-text {
             font-weight: 500;
+            font-size: 18px;
         }
 
         .word-order {
@@ -138,16 +141,17 @@
         }
 
         .selected-words {
-            margin: 20px 0;
-            padding: 15px;
+            margin: 15px 0;
+            padding: 12px;
             background: #f8f9fa;
             border-radius: 8px;
             border: 2px solid #e9ecef;
         }
 
         .selected-words h3 {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #495057;
+            font-size: 14px;
         }
 
         .selected-word-tag {
@@ -183,13 +187,13 @@
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.2s;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .convert-btn:hover {
@@ -207,12 +211,14 @@
             background: #f8f9fa;
             border: 2px solid #e9ecef;
             border-radius: 8px;
-            padding: 20px;
+            padding: 15px;
             font-family: 'Courier New', monospace;
-            font-size: 14px;
+            font-size: 12px;
             overflow-y: auto;
             white-space: pre-wrap;
             line-height: 1.4;
+            word-break: break-word;
+            max-height: 100%;
         }
 
         .output-header {
@@ -244,10 +250,11 @@
             background: #dc3545;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 8px;
+            font-size: 13px;
         }
 
         .clear-btn:hover {
@@ -319,21 +326,21 @@
 <body __processed_26119278-7e09-4dfe-80c8-302f64a66355__="true" onload="CWASA.init();">
     <div class="container">
         <div class="header">
-            <h1>HamNoSys to SigML Converter</h1>
-            <p>Chuyển đổi từ HamNoSys CSV sang định dạng SigML</p>
+            <h1>Từ điển ngôn ngữ kí hiệu tiếng Việt</h1>
+            <p>Chuyển đổi từ tiếng Việt sang ngôn ngữ kí hiệu</p>
         </div>
 
         <!-- Hướng dẫn sử dụng -->
-        <div class="instructions-section" style="background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%); color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; text-align: center;">
+        <!-- <div class="instructions-section" style="background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%); color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; text-align: center;">
             <h3 style="margin-bottom: 15px; font-size: 1.3em;">📋 Hướng dẫn sử dụng</h3>
             <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 1.1em;">
                 <span style="background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px;">1️⃣ Chọn các từ ở khung tìm kiếm</span>
                 <span style="font-size: 1.5em;">→</span>
-                <span style="background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px;">2️⃣ Nhấn "Chuyển đổi sang SigML và Phát Video"</span>
+                <span style="background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px;">2️⃣ Nhấn "Dịch"</span>
                 <span style="font-size: 1.5em;">→</span>
                 <span style="background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px;">3️⃣ Xem video ngôn ngữ ký hiệu tự động phát</span>
             </div>
-        </div>
+        </div> -->
 
         <!-- Main Layout: Word Selection & Avatar -->
         <div class="main-layout" style="display: flex; height: calc(100vh - 250px); gap: 20px; margin: 20px 0;">
@@ -358,7 +365,7 @@
                 </div>
 
                 <button class="convert-btn" id="convertBtn" onclick="convertToSigML()">
-                    🎭 Chuyển đổi sang SigML và Phát Video
+                    🎭 Dịch
                 </button>
                 
                 <div id="statusMessage" style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 8px; display: none; text-align: center;">
@@ -392,9 +399,12 @@
             <div class="right-panel" style="display: none;">
                 <div class="output-header">
                     <h2>Kết quả SigML (Debug)</h2>
-                    <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">Sao chép</button>
+                    <div>
+                        <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">Sao chép</button>
+                        <button class="copy-btn" onclick="toggleDebugPanel()" style="background: #dc3545; margin-left: 10px;">Đóng</button>
+                    </div>
                 </div>
-                <div class="sigml-output" id="sigmlOutput">Chọn các từ và nhấn "Chuyển đổi sang SigML" để tạo mã.</div>
+                <div class="sigml-output" id="sigmlOutput">Chọn các từ và nhấn "Dịch" để tạo mã.</div>
             </div>
         </div>
     </div>
@@ -462,7 +472,7 @@
             return result;
         }
 
-        // Display words in the list
+        // Display words in the list (limit to 4 results)
         function displayWords() {
             const wordListContainer = document.getElementById('wordList');
             if (filteredWords.length === 0) {
@@ -470,7 +480,10 @@
                 return;
             }
 
-            const wordsHTML = filteredWords.map((word, index) => {
+            // Limit to 4 results for better UX
+            const displayedWords = filteredWords.slice(0, 4);
+            
+            const wordsHTML = displayedWords.map((word, index) => {
                 const isSelected = selectedWords.some(sw => sw.Word === word.Word);
                 const selectedIndex = selectedWords.findIndex(sw => sw.Word === word.Word);
                 const orderNumber = selectedIndex >= 0 ? selectedIndex + 1 : '';
@@ -483,12 +496,20 @@
                 `;
             }).join('');
 
-            wordListContainer.innerHTML = wordsHTML;
+            // Show total results info if there are more than 4
+            const totalInfo = filteredWords.length > 4 ? 
+                `<div style="padding: 10px; text-align: center; color: #666; font-size: 14px; border-top: 1px solid #eee;">
+                    Hiển thị 4/${filteredWords.length} kết quả
+                </div>` : '';
+
+            wordListContainer.innerHTML = wordsHTML + totalInfo;
         }
 
         // Toggle word selection
         function toggleWord(index) {
-            const word = filteredWords[index];
+            // Use only the displayed words (first 4)
+            const displayedWords = filteredWords.slice(0, 4);
+            const word = displayedWords[index];
             const existingIndex = selectedWords.findIndex(sw => sw.Word === word.Word);
             
             if (existingIndex >= 0) {
@@ -645,7 +666,7 @@
                             // Auto-play the SigML
                             setTimeout(() => {
                                 CWASA.playSiGMLText(sigmlText, 0);
-                                showStatus('✅ Video đang phát! Hãy xem avatar phía trên.', '#4caf50');
+                                showStatus('✅ Đã dịch thành công! Xem avatar phía trên.', '#4caf50');
                                 console.log('SigML auto-played successfully');
                                 
                                 // Hide status after 3 seconds
@@ -689,16 +710,30 @@
             const rightPanel = document.querySelector('.right-panel');
             
             if (rightPanel.style.display === 'none') {
-                rightPanel.style.display = 'block';
+                rightPanel.style.display = 'flex';
+                rightPanel.style.flexDirection = 'column';
                 rightPanel.style.position = 'fixed';
                 rightPanel.style.top = '20px';
                 rightPanel.style.right = '20px';
-                rightPanel.style.width = '400px';
-                rightPanel.style.height = '500px';
+                rightPanel.style.width = '450px';
+                rightPanel.style.height = '600px';
                 rightPanel.style.zIndex = '1000';
                 rightPanel.style.background = 'white';
                 rightPanel.style.borderRadius = '10px';
                 rightPanel.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+                rightPanel.style.padding = '20px';
+                rightPanel.style.maxHeight = '80vh';
+                rightPanel.style.overflow = 'hidden';
+                
+                // Make sure the sigml output can scroll
+                const sigmlOutput = rightPanel.querySelector('.sigml-output');
+                if (sigmlOutput) {
+                    sigmlOutput.style.flex = '1';
+                    sigmlOutput.style.overflow = 'auto';
+                    sigmlOutput.style.maxHeight = 'calc(100% - 60px)';
+                    sigmlOutput.style.wordBreak = 'break-word';
+                    sigmlOutput.style.whiteSpace = 'pre-wrap';
+                }
             } else {
                 rightPanel.style.display = 'none';
             }

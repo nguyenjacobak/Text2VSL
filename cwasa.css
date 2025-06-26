@@ -83,3 +83,77 @@ h3, h4 {
 .undisplayed { display: none; }
 
 /*--------*/
+
+/* Avatar layout styles */
+.avatar-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-video-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    min-height: 400px;
+    width: 100%;
+}
+
+.avatar-controls-container {
+    background: white;
+    border-radius: 8px;
+    padding: 15px 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.divSimpleCtrlPanel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.spanPlayA select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    font-size: 14px;
+}
+
+.spanSpeed {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.spanSpeed input[type="text"] {
+    width: 60px;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.spanSpeed input[type="button"] {
+    padding: 6px 12px;
+    border: 1px solid #007bff;
+    background: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.spanSpeed input[type="button"]:hover {
+    background: #0056b3;
+}

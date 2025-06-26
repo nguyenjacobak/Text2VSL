@@ -98,8 +98,8 @@
             overflow-y: auto;
             border: 2px solid #e9ecef;
             border-radius: 8px;
-            max-height: 500px;
-            min-height: 350px;
+            max-height: 250px;
+            min-height: 200px;
         }
 
         .word-item {
@@ -351,34 +351,31 @@
                     <input type="text" id="searchInput" placeholder="Tìm kiếm từ...">
                 </div>
                 
-                <div class="word-list" id="wordList"></div>
-
                 <div class="selected-words">
                     <h3>Từ đã chọn:</h3>
                     <div id="selectedWordsContainer">
-                        <span class="selected-word-tag">
-                            <span class="order-number">1</span>
-                            13
-                            <span class="remove-btn" onclick="removeSelectedWord(0)">×</span>
-                        </span>
+                        <em>Chưa chọn từ nào</em>
                     </div>
                 </div>
-
-                <button class="convert-btn" id="convertBtn" onclick="convertToSigML()">
-                    🎭 Dịch
-                </button>
                 
+                <!-- Action buttons moved up for better balance -->
+                <div class="action-buttons" style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <button class="convert-btn" id="convertBtn" onclick="convertToSigML()" style="flex: 1; margin-top: 0;">
+                        🎭 Dịch
+                    </button>
+                    <button class="clear-btn" onclick="clearSelection()" style="flex: 1; margin-top: 0;">
+                        🗑️ Xóa tất cả
+                    </button>
+                    <button class="clear-btn" onclick="toggleDebugPanel()" style="background: #6c757d; margin-top: 0; flex: 1;">
+                        🔧 Debug
+                    </button>
+                </div>
+                
+                <div class="word-list" id="wordList"></div>
+
                 <div id="statusMessage" style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 8px; display: none; text-align: center;">
                     <span id="statusText">Đang xử lý...</span>
                 </div>
-                
-                <button class="clear-btn" onclick="clearSelection()">
-                    🗑️ Xóa tất cả
-                </button>
-                
-                <button class="clear-btn" onclick="toggleDebugPanel()" style="background: #6c757d; margin-top: 10px;">
-                    🔧 Debug Panel
-                </button>
             </div>
             
             <!-- Right: Avatar Only -->
@@ -472,7 +469,7 @@
             return result;
         }
 
-        // Display words in the list (limit to 4 results)
+        // Display words in the list (limit to 3 results)
         function displayWords() {
             const wordListContainer = document.getElementById('wordList');
             if (filteredWords.length === 0) {
@@ -480,10 +477,8 @@
                 return;
             }
 
-            // Limit to 4 results for better UX
-            const displayedWords = filteredWords.slice(0, 4);
-            
-            const wordsHTML = displayedWords.map((word, index) => {
+            // Limit to 3 results for better UX, but show all in scrollable list
+            const wordsHTML = filteredWords.map((word, index) => {
                 const isSelected = selectedWords.some(sw => sw.Word === word.Word);
                 const selectedIndex = selectedWords.findIndex(sw => sw.Word === word.Word);
                 const orderNumber = selectedIndex >= 0 ? selectedIndex + 1 : '';
@@ -496,20 +491,12 @@
                 `;
             }).join('');
 
-            // Show total results info if there are more than 4
-            const totalInfo = filteredWords.length > 4 ? 
-                `<div style="padding: 10px; text-align: center; color: #666; font-size: 14px; border-top: 1px solid #eee;">
-                    Hiển thị 4/${filteredWords.length} kết quả
-                </div>` : '';
-
-            wordListContainer.innerHTML = wordsHTML + totalInfo;
+            wordListContainer.innerHTML = wordsHTML;
         }
 
         // Toggle word selection
         function toggleWord(index) {
-            // Use only the displayed words (first 4)
-            const displayedWords = filteredWords.slice(0, 4);
-            const word = displayedWords[index];
+            const word = filteredWords[index];
             const existingIndex = selectedWords.findIndex(sw => sw.Word === word.Word);
             
             if (existingIndex >= 0) {
